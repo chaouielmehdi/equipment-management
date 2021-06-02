@@ -2,10 +2,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { FC } from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import { AfterLoginRoute } from './guards/AfterLoginRoute';
 import { BeforeLoginRoute } from './guards/BeforeLoginRoute';
+import Cart from './pages/Cart';
+import Catalogue from './pages/Catalogue';
 import Hero from './pages/Hero';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
@@ -16,6 +19,8 @@ export enum ROUTE {
 	HOME = '/home',
 	SIGN_IN = '/sign-in',
 	SIGN_UP = '/sign-up',
+	CATALOGUE = '/catalogue',
+	CART = '/cart',
 }
 
 const App: FC = () => {
@@ -36,6 +41,9 @@ const App: FC = () => {
 
 					<BeforeLoginRoute path={ROUTE.SIGN_IN} children={<SignIn />} />
 					<BeforeLoginRoute path={ROUTE.SIGN_UP} children={<SignUp />} />
+
+					<AfterLoginRoute path={ROUTE.CATALOGUE} children={<Catalogue />} />
+					<AfterLoginRoute path={ROUTE.CART} children={<Cart />} />
 
 					<Route path="*">
 						{!isConnected && <Redirect to={ROUTE.HERO} />}

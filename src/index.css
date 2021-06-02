@@ -285,3 +285,11 @@ input[type='password']:placeholder {
 	box-shadow: 0 7px 20px rgba(0, 0, 0, 0.199) !important;
 	transition: 0.3s;
 }
+
+.little-shadow {
+	box-shadow: 0 2px 7px rgba(0, 0, 0, 0.116) !important;
+	border-radius: 5px;
+}
+.c-grey {
+	color: grey;
+}

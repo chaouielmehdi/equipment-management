@@ -32,6 +32,15 @@ const Header: FC = (): ReactElement => {
 			</div>
 			<div>
 				{isConnected && (
+					<NavLink to={'/cart'} className="link mx-2 navbar-brand">
+						<button className="btn btn-light border">
+							<i className="mx-2 fas fa-shopping-cart"></i>
+							<span>Panier</span>
+						</button>
+					</NavLink>
+				)}
+
+				{isConnected && (
 					<button className="btn btn-light border" onClick={handleLogout}>
 						<i className="mx-2 fas fa-sign-in-alt"></i>
 						<span>Logout</span>

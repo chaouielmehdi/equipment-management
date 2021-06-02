@@ -1,16 +1,14 @@
 import { FC, ReactElement, useState } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { ROUTE } from '../App';
 
 const SignIn: FC = (): ReactElement => {
-	const history = useHistory();
-
-	const [username, setUsername] = useState('');
+	const [username, setUsername] = useState('client');
 	const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setUsername(e.target.value);
 	};
 
-	const [password, setPassword] = useState('');
+	const [password, setPassword] = useState('client');
 	const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setPassword(e.target.value);
 	};
