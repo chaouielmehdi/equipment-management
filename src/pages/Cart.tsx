@@ -9,7 +9,8 @@ interface CartType {
 
 const Cart: FC = (): ReactElement => {
 	const cart = (JSON.parse(localStorage.getItem('cart') || '[]') || []) as CartType[];
-	const [cartProducts, setCartProducts] = useState(products);
+	const [cartProducts, setCartProducts] = useState<typeof products>([]);
+	/* const [updatedCart, setUpdatedCart] = useState(cart); */
 
 	const initProducts = () => {
 		const newCartProducts = [] as typeof products;
@@ -32,6 +33,22 @@ const Cart: FC = (): ReactElement => {
 		initProducts();
 	}, []);
 
+	const deleteElement = (reference: String) => () => {
+		const newCart = cart.filter((products) => {
+			return products.reference !== reference;
+		});
+
+		localStorage.setItem('cart', JSON.stringify(newCart));
+
+		const newCartProducts = cartProducts.filter((products) => {
+			return products.reference !== reference;
+		});
+
+		setCartProducts(newCartProducts);
+
+		toast.success('Element a été supprimé du panier');
+	};
+
 	return (
 		<div className="row">
 			<div className="d-flex align-items-center justify-content-between" style={{ marginTop: '80px' }}>
@@ -50,6 +67,15 @@ const Cart: FC = (): ReactElement => {
 			{cartProducts.map((product, index) => (
 				<div key={product.reference} className="col-4 my-3">
 					<div className="little-shadow p-3">
+						<div className="d-flex justify-content-end">
+							<button
+								type="button"
+								className="text-danger button-close"
+								onClick={deleteElement(product.reference)}
+							>
+								<i className="fas fa-trash-alt"></i>
+							</button>
+						</div>
 						<div className="d-flex justify-content-center">
 							<img src={product.img} height="200px" alt="" />
 						</div>
