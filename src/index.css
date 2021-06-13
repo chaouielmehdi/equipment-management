@@ -45,6 +45,9 @@ body {
 .primary:hover {
 	background-color: #39ace7;
 }
+.primary:disabled {
+	background-color: #5a8092;
+}
 
 .primary:active {
 	-moz-transform: scale(0.95);
@@ -292,4 +295,30 @@ input[type='password']:placeholder {
 }
 .c-grey {
 	color: grey;
+}
+
+.close {
+	float: right;
+	font-size: 1.5rem;
+	font-weight: 700;
+	line-height: 1;
+	color: #000;
+	text-shadow: 0 1px 0 #fff;
+	opacity: 0.5;
+}
+
+.box-shadow {
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.border-radius {
+	border-radius: 10px;
+}
+
+.button-close {
+	outline: none;
+	cursor: pointer;
+	border: none;
+	background-color: Transparent;
+	background-repeat: no-repeat;
 }
