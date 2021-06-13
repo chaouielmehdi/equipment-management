@@ -23,7 +23,7 @@ const SignIn: FC = (): ReactElement => {
 
 		return null;
 	}
-
+	console.log('gaga');
 	const handleLogin = () => {
 		const storedUsers = getStoredUsers();
 
