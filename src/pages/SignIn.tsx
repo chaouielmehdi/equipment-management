@@ -1,6 +1,9 @@
 import { FC, ReactElement, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+<<<<<<< HEAD
 import { useHistory } from 'react-router-dom';
+=======
+>>>>>>> 6997bd33699ba517b394e1d92128d8afaa2ee509
 import { toast } from 'react-toastify';
 import { ROUTE } from '../App';
 
@@ -40,6 +43,7 @@ const SignIn: FC = (): ReactElement => {
 			if (user) {
 				toast.success('Sign-in avec succée!');
 				localStorage.setItem('isConnected', 'true');
+<<<<<<< HEAD
 				localStorage.setItem('ConnectedUser', JSON.stringify(inputs.username));
 
 				if (inputs.userType === 'Client') {
@@ -51,6 +55,9 @@ const SignIn: FC = (): ReactElement => {
 					window.location.href = '/agent-home';
 					//history.push(ROUTE.AGENT_HOME);
 				}
+=======
+				window.location.replace('/');
+>>>>>>> 6997bd33699ba517b394e1d92128d8afaa2ee509
 			} else {
 				toast.error('Username ou mot de pass erroné!');
 			}
