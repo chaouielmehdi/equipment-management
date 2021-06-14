@@ -49,6 +49,38 @@ const Cart: FC = (): ReactElement => {
 		toast.success('Element a été supprimé du panier');
 	};
 
+	function getCart() {
+		const item = localStorage.getItem('cart');
+
+		if (item) {
+			return JSON.parse(item);
+		}
+		return null;
+	}
+	function getConectedUser() {
+		const connectedUser = localStorage.getItem('ConnectedUser');
+
+		if (connectedUser) {
+			return JSON.parse(connectedUser);
+		}
+		return null;
+	}
+
+	const handleSubmit = () => {
+		const cart = getCart();
+		const connectedUser = getConectedUser();
+
+		if (cart === null) {
+			toast.error('Panier est vide!!');
+		} else {
+			localStorage.setItem('Devis', JSON.stringify(cart));
+			localStorage.setItem('Demandeur-devis', JSON.stringify(connectedUser));
+			localStorage.removeItem('cart');
+			toast.success('Devis soumis avec succés!');
+			//window.location.replace('/');
+		}
+	};
+
 	return (
 		<div className="row">
 			<div className="d-flex align-items-center justify-content-between" style={{ marginTop: '80px' }}>
@@ -56,7 +88,7 @@ const Cart: FC = (): ReactElement => {
 					<h1 className="fw-bold">Panier</h1>
 				</div>
 				<div>
-					<button type="button" className="primary btn-lg m-0">
+					<button type="button" className="primary btn-lg m-0" onClick={handleSubmit}>
 						Demander devis
 					</button>
 				</div>

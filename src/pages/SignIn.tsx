@@ -1,5 +1,6 @@
 import { FC, ReactElement, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { ROUTE } from '../App';
 
@@ -23,7 +24,7 @@ const SignIn: FC = (): ReactElement => {
 
 		return null;
 	}
-	console.log('gaga');
+
 	const handleLogin = () => {
 		const storedUsers = getStoredUsers();
 
@@ -39,7 +40,17 @@ const SignIn: FC = (): ReactElement => {
 			if (user) {
 				toast.success('Sign-in avec succée!');
 				localStorage.setItem('isConnected', 'true');
-				window.location.replace('/');
+				localStorage.setItem('ConnectedUser', JSON.stringify(inputs.username));
+
+				if (inputs.userType === 'Client') {
+					localStorage.setItem('UserType', 'Client');
+					window.location.replace('/');
+					//history.push(ROUTE.HOME);
+				} else {
+					localStorage.setItem('UserType', 'Agent');
+					window.location.href = '/agent-home';
+					//history.push(ROUTE.AGENT_HOME);
+				}
 			} else {
 				toast.error('Username ou mot de pass erroné!');
 			}

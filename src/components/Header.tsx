@@ -4,10 +4,12 @@ import { ROUTE } from '../App';
 
 const Header: FC = (): ReactElement => {
 	const isConnected = localStorage.getItem('isConnected');
+	const userType = localStorage.getItem('UserType');
 
 	const handleLogout = () => {
 		localStorage.removeItem('isConnected');
-
+		localStorage.removeItem('UserType');
+		localStorage.removeItem('ConnectedUser');
 		window.location.replace('/');
 	};
 
@@ -31,7 +33,7 @@ const Header: FC = (): ReactElement => {
 				)}
 			</div>
 			<div>
-				{isConnected && (
+				{isConnected && userType === 'Client' && (
 					<NavLink to={'/cart'} className="link mx-2 navbar-brand">
 						<button className="btn btn-light border">
 							<i className="mx-2 fas fa-shopping-cart"></i>
