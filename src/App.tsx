@@ -13,6 +13,7 @@ import Hero from './pages/Hero';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import AgentHome from './pages/AgentHome';
 
 export enum ROUTE {
 	HERO = '/hero',
@@ -21,11 +22,14 @@ export enum ROUTE {
 	SIGN_UP = '/sign-up',
 	CATALOGUE = '/catalogue',
 	CART = '/cart',
+	AGENT_HOME = `/agent-home`,
 }
 
 const App: FC = () => {
 	const isConnected = localStorage.getItem('isConnected') ? true : false;
-
+	
+	console.log(ROUTE.AGENT_HOME);
+	
 	return (
 		<Router>
 			<Header />
@@ -44,6 +48,7 @@ const App: FC = () => {
 
 					<AfterLoginRoute path={ROUTE.CATALOGUE} children={<Catalogue />} />
 					<AfterLoginRoute path={ROUTE.CART} children={<Cart />} />
+					<AfterLoginRoute path={ROUTE.AGENT_HOME} children={<AgentHome />} />
 
 					<Route path="*">
 						{!isConnected && <Redirect to={ROUTE.HERO} />}
