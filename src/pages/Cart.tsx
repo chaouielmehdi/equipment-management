@@ -1,5 +1,6 @@
 import { FC, ReactElement, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import { ROUTE } from '../App';
 import { products } from '../data/products';
 
 interface CartType {
@@ -77,7 +78,7 @@ const Cart: FC = (): ReactElement => {
 			localStorage.setItem('Demandeur-devis', JSON.stringify(connectedUser));
 			localStorage.removeItem('cart');
 			toast.success('Devis soumis avec succés!');
-			//window.location.replace('/');
+			window.location.replace(ROUTE.CART);
 		}
 	};
 
@@ -88,9 +89,11 @@ const Cart: FC = (): ReactElement => {
 					<h1 className="fw-bold">Panier</h1>
 				</div>
 				<div>
-					<button type="button" className="primary btn-lg m-0" onClick={handleSubmit}>
-						Demander devis
-					</button>
+					{cartProducts.length > 0 && (
+						<button type="button" className="primary btn-lg m-0" onClick={handleSubmit}>
+							Demander devis
+						</button>
+					)}
 				</div>
 			</div>
 
