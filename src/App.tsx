@@ -16,6 +16,7 @@ import SignUp from './pages/SignUp';
 import AgentHome from './pages/AgentHome';
 import AgentDevis from './pages/AgentDevis';
 import Defaillance from './pages/Defaillance';
+import Maintenance from './pages/Maintenance';
 
 export enum ROUTE {
 	HERO = '/hero',
@@ -27,6 +28,7 @@ export enum ROUTE {
 	AGENT_HOME = '/agent-home',
 	AGENT_DEVIS = '/agent-devis',
 	DEFAILLANCE = '/defaillance',
+	MAINTENANCE = '/maintenance',
 }
 
 const App: FC = () => {
@@ -55,6 +57,7 @@ const App: FC = () => {
 					<AfterLoginRoute path={ROUTE.AGENT_HOME} children={<AgentHome />} />
 					<AfterLoginRoute path={ROUTE.AGENT_DEVIS} children={<AgentDevis />} />
 					<AfterLoginRoute path={ROUTE.DEFAILLANCE} children={<Defaillance />} />
+					<AfterLoginRoute path={ROUTE.MAINTENANCE} children={<Maintenance />} />
 
 					<Route path="*">
 						{!isConnected && <Redirect to={ROUTE.HERO} />}
