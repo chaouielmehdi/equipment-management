@@ -96,7 +96,7 @@ const AgentHome: FC = (): ReactElement => {
 						</div>
 					</div>
 					<div
-						onClick={navigateTo(ROUTE.HOME)}
+						onClick={navigateTo(ROUTE.MAINTENANCE)}
 						className="shadow d-flex justify-content-center pt-5"
 						style={{ height: '260px', width: '260px', borderRadius: '5px', cursor: 'pointer' }}
 					>

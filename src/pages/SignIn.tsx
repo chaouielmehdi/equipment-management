@@ -52,7 +52,7 @@ const SignIn: FC = (): ReactElement => {
 					//history.push(ROUTE.AGENT_HOME);
 				}
 			} else {
-				toast.error('Username ou mot de pass erroné!');
+				toast.error('Username ou mot de passe erroné!');
 			}
 		}
 	};
@@ -76,7 +76,7 @@ const SignIn: FC = (): ReactElement => {
 			const newInputs = { ...inputs };
 			const newErrors = { ...errors };
 			if (value === '') {
-				newErrors.password = 'Merci de saisir le Mot de pass!';
+				newErrors.password = 'Merci de saisir le Mot de passe!';
 			} else {
 				newErrors.password = '';
 			}

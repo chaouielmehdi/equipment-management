@@ -37,10 +37,10 @@ const SignUp: FC = (): ReactElement => {
 			const newInputs = { ...inputs };
 			const newErrors = { ...errors };
 			if (value === '') {
-				newErrors.password = 'Mot de pass obligatoire!';
+				newErrors.password = 'Mot de passe obligatoire!';
 				/* } else {
 				if (value.length < 6) {
-					newErrors.password = 'Mot de pass doit contenir au moins 6 charactere!'; */
+					newErrors.password = 'Mot de passe doit contenir au moins 6 charactere!'; */
 			} else {
 				newErrors.password = '';
 
@@ -95,6 +95,7 @@ const SignUp: FC = (): ReactElement => {
 			const Val = [inputs];
 			localStorage.setItem('Users', JSON.stringify(Val));
 			toast.success('Enregistrement fait avec succées');
+			window.location.replace(ROUTE.SIGN_IN);
 		} else {
 			const user = storedUsers.find(
 				(storedUsers: any) =>
@@ -107,6 +108,7 @@ const SignUp: FC = (): ReactElement => {
 				storedUsers.push(inputs);
 				localStorage.setItem('Users', JSON.stringify(storedUsers));
 				toast.success('Enregistrement fait avec succées');
+				window.location.replace(ROUTE.SIGN_IN);
 			}
 		}
 	}

@@ -26,11 +26,6 @@ const Header: FC = (): ReactElement => {
 						SCM Biomedical Equipments
 					</NavLink>
 				)}
-				{isConnected && (
-					<NavLink to={ROUTE.HOME} className="link mx-2" activeClassName="active-link">
-						Home
-					</NavLink>
-				)}
 			</div>
 			<div>
 				{isConnected && userType === 'Client' && (

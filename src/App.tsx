@@ -18,6 +18,8 @@ import SignUp from './pages/SignUp';
 import AgentHome from './pages/AgentHome';
 import AgentDevis from './pages/AgentDevis';
 import AgentStock from './pages/AgentStock';
+import Defaillance from './pages/Defaillance';
+import Maintenance from './pages/Maintenance';
 
 export enum ROUTE {
 	HERO = '/hero',
@@ -29,6 +31,8 @@ export enum ROUTE {
 	AGENT_HOME = '/agent-home',
 	AGENT_DEVIS = '/agent-devis',
 	AGENT_STOCK = '/agent-stock',
+	DEFAILLANCE = '/defaillance',
+	MAINTENANCE = '/maintenance',
 }
 
 interface Products {
@@ -40,7 +44,6 @@ interface Products {
 }
 
 const App: FC = () => {
-	//console.log(products);
 	const isConnected = localStorage.getItem('isConnected') ? true : false;
 
 	function getStoredProducts() {
@@ -85,6 +88,10 @@ const App: FC = () => {
 					<AfterLoginRouteAgent path={ROUTE.AGENT_HOME} children={<AgentHome />} />
 					<AfterLoginRouteAgent path={ROUTE.AGENT_DEVIS} children={<AgentDevis />} />
 					<AfterLoginRouteAgent path={ROUTE.AGENT_STOCK} children={<AgentStock />} />
+
+					<AfterLoginRouteClient path={ROUTE.DEFAILLANCE} children={<Defaillance />} />
+					<AfterLoginRouteAgent path={ROUTE.MAINTENANCE} children={<Maintenance />} />
+
 					<Route path="*">
 						{!isConnected && <Redirect to={ROUTE.HERO} />}
 						{isConnected && <Redirect to={ROUTE.HOME} />}

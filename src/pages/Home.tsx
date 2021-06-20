@@ -36,10 +36,11 @@ const Home: FC = (): ReactElement => {
 					</div>
 				</div>
 				<div
+					onClick={navigateTo(ROUTE.DEFAILLANCE)}
 					className="shadow d-flex justify-content-center pt-5"
 					style={{ height: '260px', width: '260px', borderRadius: '5px', cursor: 'pointer' }}
 				>
-					<a href="mailto:contact@SCMBE.com" style={{ textDecoration: 'none' }}>
+					<div>
 						<div className="d-flex justify-content-center">
 							<i
 								className="icon-primary fas fa-info-circle mb-5"
@@ -51,7 +52,7 @@ const Home: FC = (): ReactElement => {
 								Déclarer une défaillance
 							</p>
 						</div>
-					</a>
+					</div>
 				</div>
 			</div>
 		</div>
