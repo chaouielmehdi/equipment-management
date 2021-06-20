@@ -18,20 +18,39 @@ const AgentHome: FC = (): ReactElement => {
 			<div className="d-flex flex-column">
 				<div className="d-flex justify-content-around px-5 mx-5 mt-5">
 					<div
-						onClick={navigateTo(ROUTE.HOME)}
+						onClick={navigateTo(ROUTE.AGENT_STOCK)}
 						className="shadow d-flex justify-content-center pt-5"
 						style={{ height: '260px', width: '260px', borderRadius: '5px', cursor: 'pointer' }}
 					>
 						<div>
 							<div className="d-flex justify-content-center">
 								<i
-									className="icon-primary fas fa-users mb-5"
+									className="icon-primary fas fa-cubes mb-5"
 									style={{ fontSize: '120px' }}
 								></i>
 							</div>
 							<div className="d-flex justify-content-center">
 								<p style={{ color: '#56bbed', fontSize: '20px', fontWeight: 'bold' }}>
-									Fournisseur/Client
+									Products
+								</p>
+							</div>
+						</div>
+					</div>
+					<div
+						onClick={navigateTo(ROUTE.AGENT_DEVIS)}
+						className="shadow d-flex justify-content-center pt-5"
+						style={{ height: '260px', width: '260px', borderRadius: '5px', cursor: 'pointer' }}
+					>
+						<div>
+							<div className="d-flex justify-content-center">
+								<i
+									className="icon-primary fas fa-cart-plus mb-5"
+									style={{ fontSize: '120px' }}
+								></i>
+							</div>
+							<div className="d-flex justify-content-center">
+								<p style={{ color: '#56bbed', fontSize: '20px', fontWeight: 'bold' }}>
+									Devis
 								</p>
 							</div>
 						</div>
@@ -51,25 +70,6 @@ const AgentHome: FC = (): ReactElement => {
 							<div className="d-flex justify-content-center">
 								<p style={{ color: '#56bbed', fontSize: '20px', fontWeight: 'bold' }}>
 									Ventes
-								</p>
-							</div>
-						</div>
-					</div>
-					<div
-						onClick={navigateTo(ROUTE.HOME)}
-						className="shadow d-flex justify-content-center pt-5"
-						style={{ height: '260px', width: '260px', borderRadius: '5px', cursor: 'pointer' }}
-					>
-						<div>
-							<div className="d-flex justify-content-center">
-								<i
-									className="icon-primary fas fa-cubes mb-5"
-									style={{ fontSize: '120px' }}
-								></i>
-							</div>
-							<div className="d-flex justify-content-center">
-								<p style={{ color: '#56bbed', fontSize: '20px', fontWeight: 'bold' }}>
-									Stocks
 								</p>
 							</div>
 						</div>
@@ -115,20 +115,20 @@ const AgentHome: FC = (): ReactElement => {
 						</div>
 					</div>
 					<div
-						onClick={navigateTo(ROUTE.AGENT_DEVIS)}
+						onClick={navigateTo(ROUTE.HOME)}
 						className="shadow d-flex justify-content-center pt-5"
 						style={{ height: '260px', width: '260px', borderRadius: '5px', cursor: 'pointer' }}
 					>
 						<div>
 							<div className="d-flex justify-content-center">
 								<i
-									className="icon-primary fas fa-cart-plus mb-5"
+									className="icon-primary fas fa-users mb-5"
 									style={{ fontSize: '120px' }}
 								></i>
 							</div>
 							<div className="d-flex justify-content-center">
 								<p style={{ color: '#56bbed', fontSize: '20px', fontWeight: 'bold' }}>
-									Devis
+									Fournisseur/Client
 								</p>
 							</div>
 						</div>

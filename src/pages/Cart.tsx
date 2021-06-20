@@ -1,16 +1,22 @@
 import { FC, ReactElement, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { products } from '../data/products';
+import emptycart from '../img/emptycart(1).png';
 
 interface CartType {
 	reference: string;
 	quantity: number;
 }
+interface Products {
+	name: string;
+	reference: string;
+	description: string;
+	img: string;
+}
 
 const Cart: FC = (): ReactElement => {
+	const products = (JSON.parse(localStorage.getItem('Products') || '[]') || []) as Products[];
 	const cart = (JSON.parse(localStorage.getItem('cart') || '[]') || []) as CartType[];
 	const [cartProducts, setCartProducts] = useState<typeof products>([]);
-	/* const [updatedCart, setUpdatedCart] = useState(cart); */
 
 	const initProducts = () => {
 		const newCartProducts = [] as typeof products;
@@ -77,7 +83,7 @@ const Cart: FC = (): ReactElement => {
 			localStorage.setItem('Demandeur-devis', JSON.stringify(connectedUser));
 			localStorage.removeItem('cart');
 			toast.success('Devis soumis avec succés!');
-			//window.location.replace('/');
+			window.location.replace('/');
 		}
 	};
 
@@ -88,13 +94,20 @@ const Cart: FC = (): ReactElement => {
 					<h1 className="fw-bold">Panier</h1>
 				</div>
 				<div>
-					<button type="button" className="primary btn-lg m-0" onClick={handleSubmit}>
-						Demander devis
-					</button>
+					{cartProducts.length !== 0 && (
+						<button type="button" className="primary btn-lg m-0" onClick={handleSubmit}>
+							Demander devis
+						</button>
+					)}
 				</div>
 			</div>
 
-			{cartProducts.length === 0 && <span>Panier vide</span>}
+			{/* {cartProducts.length === 0 && <span>Panier vide</span>} */}
+			{cartProducts.length === 0 && (
+				<div className="d-flex justify-content-center">
+					<img src={emptycart} height="200px" alt="" />
+				</div>
+			)}
 
 			{cartProducts.map((product, index) => (
 				<div key={product.reference} className="col-4 my-3">

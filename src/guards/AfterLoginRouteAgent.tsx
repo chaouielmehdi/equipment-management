@@ -7,12 +7,18 @@ interface IAfterLoginRouteProps {
 	path: string;
 }
 
-export const AfterLoginRoute: FC<IProps & IAfterLoginRouteProps> = ({ path, children }): ReactElement => {
+export const AfterLoginRouteAgent: FC<IProps & IAfterLoginRouteProps> = ({
+	path,
+	children,
+}): ReactElement => {
 	const isConnected = localStorage.getItem('isConnected') ? true : false;
+	const user = localStorage.getItem('UserType');
 
-	if (isConnected) {
+	if (!isConnected) {
+		return <Redirect to={ROUTE.HERO} />;
+	}
+	if (user === 'Agent') {
 		return <Route path={path} children={children} />;
 	}
-
-	return <Redirect to={ROUTE.HERO} />;
+	return <Redirect to={ROUTE.HOME} />;
 };

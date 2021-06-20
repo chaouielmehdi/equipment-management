@@ -1,13 +1,19 @@
 import { FC, ReactElement, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { products } from '../data/products';
 
 interface CartType {
 	reference: string;
 	quantity: number;
 }
+interface Products {
+	name: string;
+	reference: string;
+	description: string;
+	img: string;
+}
 
 const Catalogue: FC = (): ReactElement => {
+	const products = (JSON.parse(localStorage.getItem('Products') || '[]') || []) as Products[];
 	const [quantities, setQuantities] = useState(new Array(products.length).fill(1));
 	const [isAddedToCart, setIsAddedToCart] = useState<boolean[]>(new Array(products.length).fill(false));
 
@@ -27,7 +33,6 @@ const Catalogue: FC = (): ReactElement => {
 			setIsAddedToCart(newIsAddedToCart);
 		}
 	};
-
 	useEffect(() => {
 		initIsAddedToCart();
 	}, []);

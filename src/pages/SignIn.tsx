@@ -1,6 +1,6 @@
 import { FC, ReactElement, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
+//import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { ROUTE } from '../App';
 
@@ -29,7 +29,7 @@ const SignIn: FC = (): ReactElement => {
 		const storedUsers = getStoredUsers();
 
 		if (!storedUsers) {
-			toast.success('Aucun User existe!!');
+			toast.error('Username ou mot de pass erroné!');
 		} else {
 			const user = storedUsers.find(
 				(storedUsers: any) =>
