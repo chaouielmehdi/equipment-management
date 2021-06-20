@@ -56,20 +56,20 @@ const AgentHome: FC = (): ReactElement => {
 						</div>
 					</div>
 					<div
-						onClick={navigateTo(ROUTE.HOME)}
+						onClick={navigateTo(ROUTE.MAINTENANCE)}
 						className="shadow d-flex justify-content-center pt-5"
 						style={{ height: '260px', width: '260px', borderRadius: '5px', cursor: 'pointer' }}
 					>
 						<div>
 							<div className="d-flex justify-content-center">
 								<i
-									className="icon-primary fas fa-chart-line mb-5"
+									className="icon-primary fas fa-tools mb-5"
 									style={{ fontSize: '120px' }}
 								></i>
 							</div>
 							<div className="d-flex justify-content-center">
 								<p style={{ color: '#56bbed', fontSize: '20px', fontWeight: 'bold' }}>
-									Ventes
+									Maintenances
 								</p>
 							</div>
 						</div>
@@ -96,20 +96,20 @@ const AgentHome: FC = (): ReactElement => {
 						</div>
 					</div>
 					<div
-						onClick={navigateTo(ROUTE.MAINTENANCE)}
+						onClick={navigateTo(ROUTE.HOME)}
 						className="shadow d-flex justify-content-center pt-5"
 						style={{ height: '260px', width: '260px', borderRadius: '5px', cursor: 'pointer' }}
 					>
 						<div>
 							<div className="d-flex justify-content-center">
 								<i
-									className="icon-primary fas fa-tools mb-5"
+									className="icon-primary fas fa-chart-line mb-5"
 									style={{ fontSize: '120px' }}
 								></i>
 							</div>
 							<div className="d-flex justify-content-center">
 								<p style={{ color: '#56bbed', fontSize: '20px', fontWeight: 'bold' }}>
-									Maintenances
+									Ventes
 								</p>
 							</div>
 						</div>

@@ -1,13 +1,23 @@
 import { useState } from 'react';
 import { FC, ReactElement } from 'react';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { ROUTE } from '../App';
 
 const Defaillance: FC = (): ReactElement => {
+	const history = useHistory();
+	const connectedUser = JSON.parse(localStorage.getItem('ConnectedUser') || '');
 	const [values, setValues] = useState({
 		dateAchat: '',
 		dateDefaillance: '',
 		salle: '',
 		description: '',
+		client: connectedUser,
+		equipement: '',
+		tache: '',
+		technicien: '',
+		dateMaintenance: '',
+		isValidated: false,
 	});
 
 	const updateValues =
@@ -17,15 +27,11 @@ const Defaillance: FC = (): ReactElement => {
 		};
 
 	const handleSubmit = () => {
-		const defaillances = JSON.parse(localStorage.getItem('defaillances') || '[]') || [];
-
-		if (defaillances) {
-			defaillances.push(values);
-
-			localStorage.setItem('defaillances', JSON.stringify(defaillances));
-		}
-
-		toast.success('Element a été supprimé du panier');
+		const defaillances = JSON.parse(localStorage.getItem('Defaillances') || '[]') || [];
+		defaillances.push(values);
+		localStorage.setItem('Defaillances', JSON.stringify(defaillances));
+		toast.success('Demande a été enregistré avec succées');
+		history.push(ROUTE.HOME);
 	};
 
 	return (
@@ -36,6 +42,11 @@ const Defaillance: FC = (): ReactElement => {
 			<div className="row">
 				<div className="col-5">
 					<div className="form-group d-flex justify-content-end align-items-center mt-5">
+						<span className="d-flex align-items-center" style={{ height: '40px' }}>
+							Equipement :
+						</span>
+					</div>
+					<div className="form-group d-flex justify-content-end align-items-center mt-2">
 						<span className="d-flex align-items-center" style={{ height: '40px' }}>
 							Date d'achat :
 						</span>
@@ -58,6 +69,15 @@ const Defaillance: FC = (): ReactElement => {
 				</div>
 				<div className="col-6">
 					<div className="form-group d-flex justify-content-start mt-5">
+						<input
+							style={{ width: '380px', height: '40px', textAlign: 'start' }}
+							type="text"
+							className="form-control m-0 p-1"
+							value={values.equipement}
+							onChange={updateValues('equipement')}
+						/>
+					</div>
+					<div className="form-group d-flex justify-content-start mt-2">
 						<input
 							style={{ width: '380px', height: '40px', textAlign: 'start' }}
 							type="date"
