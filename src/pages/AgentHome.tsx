@@ -77,44 +77,6 @@ const AgentHome: FC = (): ReactElement => {
 				</div>
 				<div className="d-flex justify-content-around px-5 mx-5 mt-5">
 					<div
-						onClick={navigateTo(ROUTE.HOME)}
-						className="shadow d-flex justify-content-center pt-5"
-						style={{ height: '260px', width: '260px', borderRadius: '5px', cursor: 'pointer' }}
-					>
-						<div>
-							<div className="d-flex justify-content-center">
-								<i
-									className="icon-primary fas fa-file-invoice mb-5"
-									style={{ fontSize: '120px' }}
-								></i>
-							</div>
-							<div className="d-flex justify-content-center">
-								<p style={{ color: '#56bbed', fontSize: '20px', fontWeight: 'bold' }}>
-									Factures
-								</p>
-							</div>
-						</div>
-					</div>
-					<div
-						onClick={navigateTo(ROUTE.HOME)}
-						className="shadow d-flex justify-content-center pt-5"
-						style={{ height: '260px', width: '260px', borderRadius: '5px', cursor: 'pointer' }}
-					>
-						<div>
-							<div className="d-flex justify-content-center">
-								<i
-									className="icon-primary fas fa-chart-line mb-5"
-									style={{ fontSize: '120px' }}
-								></i>
-							</div>
-							<div className="d-flex justify-content-center">
-								<p style={{ color: '#56bbed', fontSize: '20px', fontWeight: 'bold' }}>
-									Ventes
-								</p>
-							</div>
-						</div>
-					</div>
-					<div
 						onClick={navigateTo(ROUTE.AGENT_FOURNISSEUR)}
 						className="shadow d-flex justify-content-center pt-5"
 						style={{ height: '260px', width: '260px', borderRadius: '5px', cursor: 'pointer' }}
@@ -129,6 +91,44 @@ const AgentHome: FC = (): ReactElement => {
 							<div className="d-flex justify-content-center">
 								<p style={{ color: '#56bbed', fontSize: '20px', fontWeight: 'bold' }}>
 									Fournisseur
+								</p>
+							</div>
+						</div>
+					</div>
+					<div
+						onClick={navigateTo(ROUTE.AGENT_ACHAT)}
+						className="shadow d-flex justify-content-center pt-5"
+						style={{ height: '260px', width: '260px', borderRadius: '5px', cursor: 'pointer' }}
+					>
+						<div>
+							<div className="d-flex justify-content-center">
+								<i
+									className="icon-primary fas fa-file-invoice mb-5"
+									style={{ fontSize: '120px' }}
+								></i>
+							</div>
+							<div className="d-flex justify-content-center">
+								<p style={{ color: '#56bbed', fontSize: '20px', fontWeight: 'bold' }}>
+									Achat
+								</p>
+							</div>
+						</div>
+					</div>
+					<div
+						onClick={navigateTo(ROUTE.AGENT_VENTE)}
+						className="shadow d-flex justify-content-center pt-5"
+						style={{ height: '260px', width: '260px', borderRadius: '5px', cursor: 'pointer' }}
+					>
+						<div>
+							<div className="d-flex justify-content-center">
+								<i
+									className="icon-primary fas fa-chart-line mb-5"
+									style={{ fontSize: '120px' }}
+								></i>
+							</div>
+							<div className="d-flex justify-content-center">
+								<p style={{ color: '#56bbed', fontSize: '20px', fontWeight: 'bold' }}>
+									Ventes
 								</p>
 							</div>
 						</div>

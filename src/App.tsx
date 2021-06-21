@@ -21,6 +21,8 @@ import AgentStock from './pages/AgentStock';
 import Defaillance from './pages/Defaillance';
 import Maintenance from './pages/Maintenance';
 import AgentFournisseur from './pages/AgentFournisseur';
+import AgentAchat from './pages/AgentAchat';
+import AgentVente from './pages/AgentVente';
 
 export enum ROUTE {
 	HERO = '/hero',
@@ -35,6 +37,8 @@ export enum ROUTE {
 	DEFAILLANCE = '/defaillance',
 	MAINTENANCE = '/maintenance',
 	AGENT_FOURNISSEUR = '/agent-fournisseur',
+	AGENT_ACHAT = '/agent-achat',
+	AGENT_VENTE = '/agent-vente',
 }
 
 interface Products {
@@ -91,9 +95,10 @@ const App: FC = () => {
 					<AfterLoginRouteAgent path={ROUTE.AGENT_DEVIS} children={<AgentDevis />} />
 					<AfterLoginRouteAgent path={ROUTE.AGENT_STOCK} children={<AgentStock />} />
 					<AfterLoginRouteAgent path={ROUTE.AGENT_FOURNISSEUR} children={<AgentFournisseur />} />
-
 					<AfterLoginRouteClient path={ROUTE.DEFAILLANCE} children={<Defaillance />} />
 					<AfterLoginRouteAgent path={ROUTE.MAINTENANCE} children={<Maintenance />} />
+					<AfterLoginRouteAgent path={ROUTE.AGENT_ACHAT} children={<AgentAchat />} />
+					<AfterLoginRouteAgent path={ROUTE.AGENT_VENTE} children={<AgentVente />} />
 
 					<Route path="*">
 						{!isConnected && <Redirect to={ROUTE.HERO} />}
