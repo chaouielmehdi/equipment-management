@@ -20,6 +20,7 @@ import AgentDevis from './pages/AgentDevis';
 import AgentStock from './pages/AgentStock';
 import Defaillance from './pages/Defaillance';
 import Maintenance from './pages/Maintenance';
+import AgentFournisseur from './pages/AgentFournisseur';
 
 export enum ROUTE {
 	HERO = '/hero',
@@ -33,6 +34,7 @@ export enum ROUTE {
 	AGENT_STOCK = '/agent-stock',
 	DEFAILLANCE = '/defaillance',
 	MAINTENANCE = '/maintenance',
+	AGENT_FOURNISSEUR = '/agent-fournisseur',
 }
 
 interface Products {
@@ -88,6 +90,7 @@ const App: FC = () => {
 					<AfterLoginRouteAgent path={ROUTE.AGENT_HOME} children={<AgentHome />} />
 					<AfterLoginRouteAgent path={ROUTE.AGENT_DEVIS} children={<AgentDevis />} />
 					<AfterLoginRouteAgent path={ROUTE.AGENT_STOCK} children={<AgentStock />} />
+					<AfterLoginRouteAgent path={ROUTE.AGENT_FOURNISSEUR} children={<AgentFournisseur />} />
 
 					<AfterLoginRouteClient path={ROUTE.DEFAILLANCE} children={<Defaillance />} />
 					<AfterLoginRouteAgent path={ROUTE.MAINTENANCE} children={<Maintenance />} />

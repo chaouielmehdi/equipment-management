@@ -28,31 +28,37 @@ const SignIn: FC = (): ReactElement => {
 	const handleLogin = () => {
 		const storedUsers = getStoredUsers();
 
-		if (!storedUsers) {
-			toast.error('Username ou mot de pass erroné!');
+		if (inputs.password === 'agent' && inputs.username === 'agent') {
+			toast.success('Sign-in avec succée!');
+			localStorage.setItem('isConnected', 'true');
+			localStorage.setItem('UserType', 'Agent');
+			localStorage.setItem('ConnectedUser', JSON.stringify(inputs.username));
+			window.location.href = '/agent-home';
 		} else {
-			const user = storedUsers.find(
-				(storedUsers: any) =>
-					storedUsers.password === inputs.password &&
-					storedUsers.userType === inputs.userType &&
-					storedUsers.username === inputs.username
-			);
-			if (user) {
-				toast.success('Sign-in avec succée!');
-				localStorage.setItem('isConnected', 'true');
-				localStorage.setItem('ConnectedUser', JSON.stringify(inputs.username));
+			if (!storedUsers) {
+				toast.error('Username ou mot de pass erroné!');
+			} else {
+				const user = storedUsers.find(
+					(storedUsers: any) =>
+						storedUsers.password === inputs.password && storedUsers.username === inputs.username
+				);
+				if (user) {
+					toast.success('Sign-in avec succée!');
+					localStorage.setItem('isConnected', 'true');
+					localStorage.setItem('ConnectedUser', JSON.stringify(inputs.username));
 
-				if (inputs.userType === 'Client') {
+					//if (inputs.userType === 'Client') {
 					localStorage.setItem('UserType', 'Client');
 					window.location.replace('/');
 					//history.push(ROUTE.HOME);
-				} else {
+					/* } else {
 					localStorage.setItem('UserType', 'Agent');
 					window.location.href = '/agent-home';
 					//history.push(ROUTE.AGENT_HOME);
+				} */
+				} else {
+					toast.error('Username ou mot de passe erroné!');
 				}
-			} else {
-				toast.error('Username ou mot de passe erroné!');
 			}
 		}
 	};
@@ -86,11 +92,11 @@ const SignIn: FC = (): ReactElement => {
 		},
 	};
 
-	function changeUserType(newValue: string) {
+	/* function changeUserType(newValue: string) {
 		const newInputs = { ...inputs };
 		newInputs.userType = newValue;
 		setInputs(newInputs);
-	}
+	} */
 
 	return (
 		<div className="row background">
@@ -105,7 +111,7 @@ const SignIn: FC = (): ReactElement => {
 						onChange={validate.username}
 						type="text"
 						id="login"
-						className={'fadeIn second ' + (errors.username === '' ? '' : 'is-invalid')}
+						className={'fadeIn second mt-3 ' + (errors.username === '' ? '' : 'is-invalid')}
 						placeholder="Username"
 					/>
 					<input
@@ -117,7 +123,7 @@ const SignIn: FC = (): ReactElement => {
 						name="login"
 						placeholder="Mot de passe"
 					/>
-					<div className="d-flex justify-content-around fadeIn fourth my-3">
+					{/* <div className="d-flex justify-content-around fadeIn fourth my-3">
 						<div className="form-check">
 							<input
 								className="form-check-input"
@@ -144,10 +150,10 @@ const SignIn: FC = (): ReactElement => {
 								Client
 							</label>
 						</div>
-					</div>
+					</div> */}
 					<button
 						onClick={handleLogin}
-						className="primary fadeIn fourth"
+						className="primary fadeIn fourth mt-5"
 						disabled={inputs.username === '' || inputs.password === ''}
 					>
 						Log In

@@ -113,11 +113,11 @@ const SignUp: FC = (): ReactElement => {
 		}
 	}
 
-	function changeUserType(newValue: string) {
+	/* function changeUserType(newValue: string) {
 		const newInputs = { ...inputs };
 		newInputs.userType = newValue;
 		setInputs(newInputs);
-	}
+	} */
 
 	return (
 		<div className="row background">
@@ -158,7 +158,7 @@ const SignUp: FC = (): ReactElement => {
 						onChange={validate.phone}
 					/>
 
-					<div className="d-flex justify-content-around fadeIn fourth my-3">
+					{/* <div className="d-flex justify-content-around fadeIn fourth my-3">
 						<div className="form-check">
 							<input
 								className="form-check-input"
@@ -185,7 +185,7 @@ const SignUp: FC = (): ReactElement => {
 								Client
 							</label>
 						</div>
-					</div>
+					</div> */}
 					<button
 						className="primary fadeIn fourth"
 						onClick={handleSubmit}
