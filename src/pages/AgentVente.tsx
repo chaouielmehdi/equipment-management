@@ -2,17 +2,19 @@ import { FC, ReactElement, useState } from 'react';
 import { toast } from 'react-toastify';
 import AddVente from '../modals/AddVente';
 
-export interface FournisseurType {
-	id: string;
-	entreprise: string;
-	tel: string;
-	ville: string;
-	address: string;
+export interface VenteType {
+	idCommand: string;
+	client: string;
+	refEquipmentDemandé: string;
+	dateVente: Date;
+	qteDemandé: string;
+	prixVente: string;
+	total: string;
 }
 
 const AgentAchat: FC = (): ReactElement => {
-	const [listFournisseur, setListFournisseur] = useState<FournisseurType[]>(
-		JSON.parse(localStorage.getItem('Fournisseurs') || '[]') || []
+	const [listVentes, setListVentes] = useState<VenteType[]>(
+		JSON.parse(localStorage.getItem('Ventes') || '[]') || []
 	);
 
 	const handleSubmit = () => {
@@ -21,16 +23,16 @@ const AgentAchat: FC = (): ReactElement => {
 	const [modal, setModal] = useState<boolean>(false);
 	const toggle = () => setModal(!modal);
 
-	const deleteElement = (id: String) => () => {
-		const newUpdatedlist = listFournisseur.filter((products) => {
-			return products.id !== id;
+	const deleteElement = (idCommand: String) => () => {
+		const newUpdatedlist = listVentes.filter((products) => {
+			return products.idCommand !== idCommand;
 		});
 
-		localStorage.setItem('Fournisseurs', JSON.stringify(newUpdatedlist));
+		localStorage.setItem('Ventes', JSON.stringify(newUpdatedlist));
 
-		setListFournisseur(newUpdatedlist);
+		setListVentes(newUpdatedlist);
 
-		toast.success('Fournisseur supprimé');
+		toast.success('Vente supprimé');
 	};
 
 	return (
@@ -41,45 +43,49 @@ const AgentAchat: FC = (): ReactElement => {
 					style={{ marginTop: '80px' }}
 				>
 					<div>
-						<h1 className="fw-bold">Fournisseurs : </h1>
+						<h1 className="fw-bold">Ventes : </h1>
 					</div>
 					<div>
 						<button type="button" className="primary btn-lg m-0" onClick={handleSubmit}>
-							Ajouter un Fournisseur
+							Ajouter une vente
 						</button>
 					</div>
 				</div>
 
-				{listFournisseur.length === 0 ? (
-					<span>Fournisseurs vide</span>
+				{listVentes.length === 0 ? (
+					<span>Aucune vente</span>
 				) : (
 					<div className="col-12 mt-3">
 						<table className="table">
 							<thead>
 								<tr>
 									<th scope="col" className="col-1">
-										ID
+										N° de commande
 									</th>
-									<th scope="col">Nom de l'entreprise</th>
-									<th scope="col">N° Tel</th>
-									<th scope="col">Ville</th>
-									<th scope="col">Adresse</th>
+									<th scope="col">Nom de client</th>
+									<th scope="col">Réf equipement demandé</th>
+									<th scope="col">Date de vente</th>
+									<th scope="col">Quantité demandé</th>
+									<th scope="col">Prix de vente</th>
+									<th scope="col">Total</th>
 									<th scope="col" className="col-1"></th>
 								</tr>
 							</thead>
 							<tbody>
-								{listFournisseur.map((value) => (
+								{listVentes.map((value) => (
 									<tr>
-										<td>{value.id}</td>
-										<td>{value.entreprise}</td>
-										<td>{value.tel}</td>
-										<td>{value.ville}</td>
-										<td>{value.address}</td>
+										<td>{value.idCommand}</td>
+										<td>{value.client}</td>
+										<td>{value.refEquipmentDemandé}</td>
+										<td>{value.dateVente}</td>
+										<td>{value.qteDemandé}</td>
+										<td>{value.prixVente}</td>
+										<td>{value.total}</td>
 										<td>
 											<button
 												type="button"
 												className="text-danger button-close"
-												onClick={deleteElement(value.id)}
+												onClick={deleteElement(value.idCommand)}
 											>
 												<i className="fas fa-trash-alt"></i>
 											</button>
