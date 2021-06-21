@@ -12,7 +12,7 @@ export interface FournisseurType {
 
 const AgentFournisseur: FC = (): ReactElement => {
 	const [listFournisseur, setListFournisseur] = useState<FournisseurType[]>(
-		JSON.parse(localStorage.getItem('Fournisseurs') || '') || []
+		JSON.parse(localStorage.getItem('Fournisseurs') || '[]') || []
 	);
 
 	const handleSubmit = () => {

@@ -15,7 +15,7 @@ export interface DefaillanceType {
 }
 
 const Maintenance: FC = (): ReactElement => {
-	const listDefaillances = JSON.parse(localStorage.getItem('Defaillances') || '') as DefaillanceType[];
+	const listDefaillances = JSON.parse(localStorage.getItem('Defaillances') || '[]') as DefaillanceType[];
 	const [values, setValues] = useState<DefaillanceType[]>(listDefaillances);
 
 	const setInputValue = (index: number, field: string) => (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
+import { ROUTE } from '../App';
 
 interface IAddProduct {
 	className?: string;
@@ -133,6 +134,7 @@ const AddFournisseur: FC<IAddProduct> = ({ isOpen, toggle }) => {
 			storedFournisseurs.push(addedFournisseur);
 			localStorage.setItem('Fournisseurs', JSON.stringify(storedFournisseurs));
 		}
+		window.location.replace(ROUTE.AGENT_FOURNISSEUR);
 		toggle();
 	};
 
