@@ -2,7 +2,6 @@ import { FC, ReactElement, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import emptycart from '../img/emptycart(1).png';
 import { ROUTE } from '../App';
-import { products } from '../data/products';
 
 interface CartType {
 	reference: string;

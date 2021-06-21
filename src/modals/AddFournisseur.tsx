@@ -8,130 +8,130 @@ interface IAddProduct {
 	toggle: (event?: React.MouseEvent) => void;
 }
 
-interface Products {
-	name: string;
-	reference: string;
-	quantity: number;
-	description: string;
-	img: string;
+interface Fournisseurs {
+	id: string;
+	entreprise: string;
+	tel: string;
+	ville: string;
+	address: string;
 }
 
-const AddProductModal: FC<IAddProduct> = ({ isOpen, toggle }) => {
+const AddFournisseur: FC<IAddProduct> = ({ isOpen, toggle }) => {
 	const [errors, setErrors] = useState({
-		name: '',
-		reference: '',
-		quantity: '',
-		img: '',
-		description: '',
+		id: '',
+		entreprise: '',
+		tel: '',
+		address: '',
+		ville: '',
 	});
 	const [inputs, setInputs] = useState({
-		name: '',
-		reference: '',
-		quantity: '',
-		img: '',
-		description: '',
+		id: '',
+		entreprise: '',
+		tel: '',
+		address: '',
+		ville: '',
 	});
 
 	const validate = {
-		name: (event: React.ChangeEvent<HTMLInputElement>) => {
+		id: (event: React.ChangeEvent<HTMLInputElement>) => {
 			const value = event.target.value;
 			const newInputs = { ...inputs };
 			const newErrors = { ...errors };
 			if (value === '') {
-				newErrors.name = 'Champ obligatoire';
+				newErrors.id = 'Champ obligatoire';
 			} else {
-				newErrors.name = '';
+				newErrors.id = '';
 			}
-			newInputs.name = value;
+			newInputs.id = value;
 			setErrors(newErrors);
 			setInputs(newInputs);
 		},
-		reference: (event: React.ChangeEvent<HTMLInputElement>) => {
+		entreprise: (event: React.ChangeEvent<HTMLInputElement>) => {
 			const value = event.target.value;
 			const newInputs = { ...inputs };
 			const newErrors = { ...errors };
 			if (value === '') {
-				newErrors.reference = 'Champ obligatoire';
+				newErrors.entreprise = 'Champ obligatoire';
 			} else {
-				newErrors.reference = '';
+				newErrors.entreprise = '';
 			}
-			newInputs.reference = value;
+			newInputs.entreprise = value;
 			setErrors(newErrors);
 			setInputs(newInputs);
 		},
-		quantity: (event: React.ChangeEvent<HTMLInputElement>) => {
+		tel: (event: React.ChangeEvent<HTMLInputElement>) => {
 			const value = event.target.value;
 			const newInputs = { ...inputs };
 			const newErrors = { ...errors };
 			if (value === '') {
-				newErrors.quantity = 'Champ obligatoire';
+				newErrors.tel = 'Champ obligatoire';
 			} else {
-				newErrors.quantity = '';
+				newErrors.tel = '';
 			}
-			newInputs.quantity = value;
+			newInputs.tel = value;
 			setErrors(newErrors);
 			setInputs(newInputs);
 		},
-		img: (event: React.ChangeEvent<HTMLInputElement>) => {
+		address: (event: React.ChangeEvent<HTMLInputElement>) => {
 			const value = event.target.value;
 			const newInputs = { ...inputs };
 			const newErrors = { ...errors };
 			if (value === '') {
-				newErrors.img = 'Champ obligatoire';
+				newErrors.address = 'Champ obligatoire';
 			} else {
-				newErrors.img = '';
+				newErrors.address = '';
 			}
-			newInputs.img = value;
+			newInputs.address = value;
 			setErrors(newErrors);
 			setInputs(newInputs);
 		},
-		description: (event: React.ChangeEvent<HTMLInputElement>) => {
+		ville: (event: React.ChangeEvent<HTMLInputElement>) => {
 			const value = event.target.value;
 			const newInputs = { ...inputs };
 			const newErrors = { ...errors };
 			if (value === '') {
-				newErrors.description = 'Champ obligatoire!';
+				newErrors.ville = 'Champ obligatoire!';
 			} else {
-				newErrors.description = '';
+				newErrors.ville = '';
 			}
-			newInputs.description = value;
+			newInputs.ville = value;
 			setErrors(newErrors);
 			setInputs(newInputs);
 		},
 	};
 
-	function getStoredProducts() {
-		const products = localStorage.getItem('Products');
-		if (products) {
-			return JSON.parse(products);
+	function getStoredFournisseurs() {
+		const fournisseurs = localStorage.getItem('Fournisseurs');
+		if (fournisseurs) {
+			return JSON.parse(fournisseurs);
 		}
 		return null;
 	}
 
 	const handleAdd = () => {
-		const storedProducts = getStoredProducts();
+		const storedFournisseurs = getStoredFournisseurs();
 
-		if (!storedProducts) {
-			let productsList: Products[] = [
+		if (!storedFournisseurs) {
+			let singleFournisseur: Fournisseurs[] = [
 				{
-					name: inputs.name,
-					reference: inputs.reference,
-					quantity: parseInt(inputs.quantity, 10),
-					description: inputs.description,
-					img: inputs.img,
+					id: inputs.id,
+					entreprise: inputs.entreprise,
+					tel: inputs.tel,
+					ville: inputs.ville,
+					address: inputs.address,
 				},
 			];
-			localStorage.setItem('Products', JSON.stringify(productsList));
+			localStorage.setItem('Fournisseurs', JSON.stringify(singleFournisseur));
 		} else {
-			let productAdded = {
-				name: inputs.name,
-				reference: inputs.reference,
-				quantity: parseInt(inputs.quantity, 10),
-				description: inputs.description,
-				img: inputs.img,
+			let addedFournisseur = {
+				id: inputs.id,
+				entreprise: inputs.entreprise,
+				tel: inputs.tel,
+				ville: inputs.ville,
+				address: inputs.address,
 			};
-			storedProducts.push(productAdded);
-			localStorage.setItem('Products', JSON.stringify(storedProducts));
+			storedFournisseurs.push(addedFournisseur);
+			localStorage.setItem('Fournisseurs', JSON.stringify(storedFournisseurs));
 		}
 		toggle();
 	};
@@ -139,77 +139,71 @@ const AddProductModal: FC<IAddProduct> = ({ isOpen, toggle }) => {
 	return (
 		<>
 			<Modal isOpen={isOpen} toggle={toggle}>
-				<ModalHeader toggle={toggle}>Ajouter un produit </ModalHeader>
+				<ModalHeader toggle={toggle}>Ajouter un Fournisseur </ModalHeader>
 				<ModalBody>
 					<div className="d-flex align-items-center mt-1">
 						<span className="font-weight-bold" style={{ width: 150 }}>
-							Nom du produit :
+							ID :
 						</span>
 						<div className="d-flex  flex-column">
 							<input
 								style={{ width: '200px', height: '30px' }}
 								className={
-									'form-control ml-1 input-style ' +
-									(errors.name === '' ? '' : 'is-invalid')
+									'form-control ml-1 input-style ' + (errors.id === '' ? '' : 'is-invalid')
 								}
 								type="text"
-								onChange={validate.name}
+								onChange={validate.id}
 							/>
-							<div className="invalid-feedback text-left ml-5">{errors.name}</div>
+							<div className="invalid-feedback text-left ml-5">{errors.id}</div>
 						</div>
 					</div>
 					<div className="d-flex align-items-center mt-1">
 						<span className="font-weight-bold" style={{ width: 150 }}>
-							Ref du produit :
+							Entreprise :
 						</span>
 						<input
 							style={{ width: '200px', height: '30px' }}
 							className={
 								'form-control ml-1 input-style ' +
-								(errors.reference === '' ? '' : 'is-invalid')
+								(errors.entreprise === '' ? '' : 'is-invalid')
 							}
 							type="text"
-							onChange={validate.reference}
+							onChange={validate.entreprise}
 						/>
 					</div>
 					<div className="d-flex align-items-center mt-1">
 						<span className="font-weight-bold" style={{ width: 150 }}>
-							Quantité :
+							N° Tel :
 						</span>
 						<input
 							style={{ width: '200px', height: '30px' }}
 							className={
-								'form-control ml-1 input-style ' +
-								(errors.quantity === '' ? '' : 'is-invalid')
+								'form-control ml-1 input-style ' + (errors.tel === '' ? '' : 'is-invalid')
 							}
-							type="number"
-							min={1}
-							onChange={validate.quantity}
+							type="text"
+							onChange={validate.tel}
 						/>
 					</div>
 					<div className="d-flex align-items-center mt-1">
 						<span className="font-weight-bold" style={{ width: 150 }}>
-							URL image :
+							Address :
 						</span>
 						<input
 							style={{ width: '200px', height: '30px' }}
-							className={'form-control ml-1 ' + (errors.img === '' ? '' : 'is-invalid')}
+							className={'form-control ml-1 ' + (errors.address === '' ? '' : 'is-invalid')}
 							type="text"
-							onChange={validate.img}
+							onChange={validate.address}
 						/>
 					</div>
 					<div className="d-flex align-items-center mt-1">
 						<span className="font-weight-bold" style={{ width: 150 }}>
-							Description :
+							Ville :
 						</span>
 						<input
-							className={
-								'form-control ml-1 input-style ' +
-								(errors.description === '' ? '' : 'is-invalid')
-							}
-							style={{ width: '280px', height: '30px' }}
+							style={{ width: '200px', height: '30px' }}
+							className={'form-control ml-1 ' + (errors.ville === '' ? '' : 'is-invalid')}
 							type="text"
-							onChange={validate.description}
+							onChange={validate.ville}
 						/>
 					</div>
 				</ModalBody>
@@ -225,4 +219,4 @@ const AddProductModal: FC<IAddProduct> = ({ isOpen, toggle }) => {
 	);
 };
 
-export default AddProductModal;
+export default AddFournisseur;

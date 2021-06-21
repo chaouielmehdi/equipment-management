@@ -54,7 +54,6 @@ const AgentDevis: FC = (): ReactElement => {
 		initProducts();
 	}, []);
 
-	//const [inputValue, setInputValue] = useState('');
 	const [inputValue, setInputValue] = useState(new Array(productsDevis.length).fill(1));
 	const [total, setTotal] = useState(0);
 
@@ -66,7 +65,13 @@ const AgentDevis: FC = (): ReactElement => {
 	};
 
 	useEffect(() => {
-		const newTotal: number = inputValue.reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0);
+		const subTotalUnit: number[] = [];
+		productsDevis.forEach((product, index) => {
+			subTotalUnit.push(inputValue[index] * product.quantity);
+		});
+
+		//const newTotal: number = subTotalUnit.reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0);
+		const newTotal: number = subTotalUnit.reduce((a, b) => a + b, 0);
 		setTotal(newTotal);
 		console.log(inputValue);
 	}, [inputValue]);
@@ -88,7 +93,7 @@ const AgentDevis: FC = (): ReactElement => {
 		window.location.replace('/');
 	};
 
-	const checkStockQuantity = (productReference: string) => () => {
+	/* const checkStockQuantity = (productReference: string) => () => {
 		const getProduct = products.filter((product) => {
 			return product.reference === productReference;
 		});
@@ -96,7 +101,7 @@ const AgentDevis: FC = (): ReactElement => {
 		let productObject = getProduct[0];
 		console.log(productObject.quantity);
 		return productObject.quantity;
-	};
+	}; */
 
 	return (
 		<div className="row">
@@ -189,7 +194,7 @@ const AgentDevis: FC = (): ReactElement => {
 			{devisProducts.length !== 0 && (
 				<>
 					<div className="d-flex justify-content-center mt-3 px-5 py-3">
-						<span style={{ fontSize: '20px', fontWeight: 'bold' }}>Total : {total}  MAD</span>
+						<span style={{ fontSize: '20px', fontWeight: 'bold' }}>Total : {total} MAD</span>
 					</div>
 					<div className="d-flex justify-content-center mt-3 px-5 py-3">
 						<button className="btn btn-primary" onClick={handleSubmit}>
