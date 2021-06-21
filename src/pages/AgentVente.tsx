@@ -67,7 +67,6 @@ const AgentAchat: FC = (): ReactElement => {
 									<th scope="col">Date de vente</th>
 									<th scope="col">Quantité demandé</th>
 									<th scope="col">Prix de vente</th>
-									<th scope="col">Total</th>
 									<th scope="col" className="col-1"></th>
 								</tr>
 							</thead>
@@ -80,7 +79,6 @@ const AgentAchat: FC = (): ReactElement => {
 										<td>{value.dateVente}</td>
 										<td>{value.qteDemandé}</td>
 										<td>{value.prixVente}</td>
-										<td>{value.total}</td>
 										<td>
 											<button
 												type="button"

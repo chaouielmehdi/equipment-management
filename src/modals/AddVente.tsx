@@ -240,7 +240,7 @@ const AddVente: FC<IAddProduct> = ({ isOpen, toggle }) => {
 						<input
 							style={{ width: '200px', height: '30px' }}
 							className={'form-control ml-1 ' + (errors.qteDemandé === '' ? '' : 'is-invalid')}
-							type="text"
+							type="number"
 							onChange={validate.qteDemandé}
 						/>
 					</div>
@@ -251,19 +251,8 @@ const AddVente: FC<IAddProduct> = ({ isOpen, toggle }) => {
 						<input
 							style={{ width: '200px', height: '30px' }}
 							className={'form-control ml-1 ' + (errors.qteDemandé === '' ? '' : 'is-invalid')}
-							type="text"
+							type="number"
 							onChange={validate.prixVente}
-						/>
-					</div>
-					<div className="d-flex align-items-center mt-1">
-						<span className="font-weight-bold" style={{ width: 150 }}>
-							Total :
-						</span>
-						<input
-							style={{ width: '200px', height: '30px' }}
-							className={'form-control ml-1 ' + (errors.qteDemandé === '' ? '' : 'is-invalid')}
-							type="text"
-							onChange={validate.total}
 						/>
 					</div>
 				</ModalBody>
