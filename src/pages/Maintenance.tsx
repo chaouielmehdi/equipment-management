@@ -93,8 +93,8 @@ const Maintenance: FC = (): ReactElement => {
 												onChange={setSelectValue(index)}
 											>
 												<option selected></option>
-												<option value="Element 1">Element 1</option>
-												<option value="Element 2">Element 2</option>
+												<option value="M. préventive">M. préventive</option>
+												<option value="M. corrective">M. corrective</option>
 											</select>
 										)}
 									</td>
