@@ -128,7 +128,7 @@ const AgentHome: FC = (): ReactElement => {
 							</div>
 							<div className="d-flex justify-content-center">
 								<p style={{ color: '#56bbed', fontSize: '20px', fontWeight: 'bold' }}>
-									Fournisseur/Client
+									Fournisseur
 								</p>
 							</div>
 						</div>
