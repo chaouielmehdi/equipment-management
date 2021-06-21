@@ -9,31 +9,34 @@ interface IAddProduct {
 	toggle: (event?: React.MouseEvent) => void;
 }
 
-interface Fournisseurs {
+interface Achats {
 	id: string;
-	entreprise: string;
-	tel: string;
-	ville: string;
-	address: string;
+	designation: string;
+	price: string;
+	fournisseur: string;
+	date: string;
+	quantity: string;
 }
 
 const AddAchat: FC<IAddProduct> = ({ isOpen, toggle }) => {
 	const [errors, setErrors] = useState({
 		id: '',
-		entreprise: '',
-		tel: '',
-		address: '',
-		ville: '',
+		designation: '',
+		price: '',
+		fournisseur: '',
+		date: '',
+		quantity: '',
 	});
 	const [inputs, setInputs] = useState({
 		id: '',
-		entreprise: '',
-		tel: '',
-		address: '',
-		ville: '',
+		designation: '',
+		price: '',
+		fournisseur: '',
+		date: '',
+		quantity: '',
 	});
 
-	const validate = {
+	const valifournisseur = {
 		id: (event: React.ChangeEvent<HTMLInputElement>) => {
 			const value = event.target.value;
 			const newInputs = { ...inputs };
@@ -47,101 +50,116 @@ const AddAchat: FC<IAddProduct> = ({ isOpen, toggle }) => {
 			setErrors(newErrors);
 			setInputs(newInputs);
 		},
-		entreprise: (event: React.ChangeEvent<HTMLInputElement>) => {
+		designation: (event: React.ChangeEvent<HTMLInputElement>) => {
 			const value = event.target.value;
 			const newInputs = { ...inputs };
 			const newErrors = { ...errors };
 			if (value === '') {
-				newErrors.entreprise = 'Champ obligatoire';
+				newErrors.designation = 'Champ obligatoire';
 			} else {
-				newErrors.entreprise = '';
+				newErrors.designation = '';
 			}
-			newInputs.entreprise = value;
+			newInputs.designation = value;
 			setErrors(newErrors);
 			setInputs(newInputs);
 		},
-		tel: (event: React.ChangeEvent<HTMLInputElement>) => {
+		price: (event: React.ChangeEvent<HTMLInputElement>) => {
 			const value = event.target.value;
 			const newInputs = { ...inputs };
 			const newErrors = { ...errors };
 			if (value === '') {
-				newErrors.tel = 'Champ obligatoire';
+				newErrors.price = 'Champ obligatoire';
 			} else {
-				newErrors.tel = '';
+				newErrors.price = '';
 			}
-			newInputs.tel = value;
+			newInputs.price = value;
 			setErrors(newErrors);
 			setInputs(newInputs);
 		},
-		address: (event: React.ChangeEvent<HTMLInputElement>) => {
+		fournisseur: (event: React.ChangeEvent<HTMLInputElement>) => {
 			const value = event.target.value;
 			const newInputs = { ...inputs };
 			const newErrors = { ...errors };
 			if (value === '') {
-				newErrors.address = 'Champ obligatoire';
+				newErrors.fournisseur = 'Champ obligatoire!';
 			} else {
-				newErrors.address = '';
+				newErrors.fournisseur = '';
 			}
-			newInputs.address = value;
+			newInputs.fournisseur = value;
 			setErrors(newErrors);
 			setInputs(newInputs);
 		},
-		ville: (event: React.ChangeEvent<HTMLInputElement>) => {
+		date: (event: React.ChangeEvent<HTMLInputElement>) => {
 			const value = event.target.value;
 			const newInputs = { ...inputs };
 			const newErrors = { ...errors };
 			if (value === '') {
-				newErrors.ville = 'Champ obligatoire!';
+				newErrors.date = 'Champ obligatoire';
 			} else {
-				newErrors.ville = '';
+				newErrors.date = '';
 			}
-			newInputs.ville = value;
+			newInputs.date = value;
+			setErrors(newErrors);
+			setInputs(newInputs);
+		},
+		quantity: (event: React.ChangeEvent<HTMLInputElement>) => {
+			const value = event.target.value;
+			const newInputs = { ...inputs };
+			const newErrors = { ...errors };
+			if (value === '') {
+				newErrors.quantity = 'Champ obligatoire';
+			} else {
+				newErrors.quantity = '';
+			}
+			newInputs.quantity = value;
 			setErrors(newErrors);
 			setInputs(newInputs);
 		},
 	};
 
-	function getStoredFournisseurs() {
-		const fournisseurs = localStorage.getItem('Fournisseurs');
-		if (fournisseurs) {
-			return JSON.parse(fournisseurs);
+	function getStoredAchats() {
+		const Achats = localStorage.getItem('Achats');
+		if (Achats) {
+			return JSON.parse(Achats);
 		}
 		return null;
 	}
 
 	const handleAdd = () => {
-		const storedFournisseurs = getStoredFournisseurs();
+		const storedAchats = getStoredAchats();
 
-		if (!storedFournisseurs) {
-			let singleFournisseur: Fournisseurs[] = [
+		if (!storedAchats) {
+			let singleAchat: Achats[] = [
 				{
 					id: inputs.id,
-					entreprise: inputs.entreprise,
-					tel: inputs.tel,
-					ville: inputs.ville,
-					address: inputs.address,
+					designation: inputs.designation,
+					price: inputs.price,
+					fournisseur: inputs.fournisseur,
+					date: inputs.date,
+					quantity: inputs.quantity,
 				},
 			];
-			localStorage.setItem('Fournisseurs', JSON.stringify(singleFournisseur));
+			localStorage.setItem('Achats', JSON.stringify(singleAchat));
 		} else {
-			let addedFournisseur = {
+			let addedAchat = {
 				id: inputs.id,
-				entreprise: inputs.entreprise,
-				tel: inputs.tel,
-				ville: inputs.ville,
-				address: inputs.address,
+				designation: inputs.designation,
+				price: inputs.price,
+				fournisseur: inputs.fournisseur,
+				date: inputs.date,
+				quantity: inputs.quantity,
 			};
-			storedFournisseurs.push(addedFournisseur);
-			localStorage.setItem('Fournisseurs', JSON.stringify(storedFournisseurs));
+			storedAchats.push(addedAchat);
+			localStorage.setItem('Achats', JSON.stringify(storedAchats));
 		}
-		window.location.replace(ROUTE.AGENT_FOURNISSEUR);
+		window.location.replace(ROUTE.AGENT_ACHAT);
 		toggle();
 	};
 
 	return (
 		<>
 			<Modal isOpen={isOpen} toggle={toggle}>
-				<ModalHeader toggle={toggle}>Ajouter un Fournisseur </ModalHeader>
+				<ModalHeader toggle={toggle}>Ajouter un Achat </ModalHeader>
 				<ModalBody>
 					<div className="d-flex align-items-center mt-1">
 						<span className="font-weight-bold" style={{ width: 150 }}>
@@ -154,58 +172,67 @@ const AddAchat: FC<IAddProduct> = ({ isOpen, toggle }) => {
 									'form-control ml-1 input-style ' + (errors.id === '' ? '' : 'is-invalid')
 								}
 								type="text"
-								onChange={validate.id}
+								onChange={valifournisseur.id}
 							/>
 							<div className="invalid-feedback text-left ml-5">{errors.id}</div>
 						</div>
 					</div>
 					<div className="d-flex align-items-center mt-1">
 						<span className="font-weight-bold" style={{ width: 150 }}>
-							Entreprise :
+							designation :
 						</span>
 						<input
 							style={{ width: '200px', height: '30px' }}
 							className={
 								'form-control ml-1 input-style ' +
-								(errors.entreprise === '' ? '' : 'is-invalid')
+								(errors.designation === '' ? '' : 'is-invalid')
 							}
 							type="text"
-							onChange={validate.entreprise}
+							onChange={valifournisseur.designation}
 						/>
 					</div>
 					<div className="d-flex align-items-center mt-1">
 						<span className="font-weight-bold" style={{ width: 150 }}>
-							N° Tel :
+							Prix unitaire :
 						</span>
 						<input
 							style={{ width: '200px', height: '30px' }}
-							className={
-								'form-control ml-1 input-style ' + (errors.tel === '' ? '' : 'is-invalid')
-							}
-							type="text"
-							onChange={validate.tel}
+							className={'form-control ml-1 ' + (errors.price === '' ? '' : 'is-invalid')}
+							type="number"
+							onChange={valifournisseur.price}
 						/>
 					</div>
 					<div className="d-flex align-items-center mt-1">
 						<span className="font-weight-bold" style={{ width: 150 }}>
-							Address :
+							fournisseur :
 						</span>
 						<input
 							style={{ width: '200px', height: '30px' }}
-							className={'form-control ml-1 ' + (errors.address === '' ? '' : 'is-invalid')}
+							className={'form-control ml-1 ' + (errors.fournisseur === '' ? '' : 'is-invalid')}
 							type="text"
-							onChange={validate.address}
+							onChange={valifournisseur.fournisseur}
 						/>
 					</div>
 					<div className="d-flex align-items-center mt-1">
 						<span className="font-weight-bold" style={{ width: 150 }}>
-							Ville :
+							date :
 						</span>
 						<input
 							style={{ width: '200px', height: '30px' }}
-							className={'form-control ml-1 ' + (errors.ville === '' ? '' : 'is-invalid')}
-							type="text"
-							onChange={validate.ville}
+							className={'form-control ml-1 ' + (errors.date === '' ? '' : 'is-invalid')}
+							type="date"
+							onChange={valifournisseur.date}
+						/>
+					</div>
+					<div className="d-flex align-items-center mt-1">
+						<span className="font-weight-bold" style={{ width: 150 }}>
+							Quantité :
+						</span>
+						<input
+							style={{ width: '200px', height: '30px' }}
+							className={'form-control ml-1 ' + (errors.date === '' ? '' : 'is-invalid')}
+							type="number"
+							onChange={valifournisseur.quantity}
 						/>
 					</div>
 				</ModalBody>
