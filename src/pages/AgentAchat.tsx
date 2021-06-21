@@ -2,17 +2,18 @@ import { FC, ReactElement, useState } from 'react';
 import { toast } from 'react-toastify';
 import AddAchat from '../modals/AddAchat';
 
-export interface FournisseurType {
+export interface AchatType {
 	id: string;
-	entreprise: string;
-	tel: string;
-	ville: string;
-	address: string;
+	designation: string;
+	price: string;
+	fournisseur: string;
+	date: string;
+	quantity: string;
 }
 
 const AgentAchat: FC = (): ReactElement => {
-	const [listFournisseur, setListFournisseur] = useState<FournisseurType[]>(
-		JSON.parse(localStorage.getItem('Fournisseurs') || '[]') || []
+	const [listAchat, setListAchat] = useState<AchatType[]>(
+		JSON.parse(localStorage.getItem('Achats') || '[]') || []
 	);
 
 	const handleSubmit = () => {
@@ -22,15 +23,15 @@ const AgentAchat: FC = (): ReactElement => {
 	const toggle = () => setModal(!modal);
 
 	const deleteElement = (id: String) => () => {
-		const newUpdatedlist = listFournisseur.filter((products) => {
+		const newUpdatedlist = listAchat.filter((products) => {
 			return products.id !== id;
 		});
 
-		localStorage.setItem('Fournisseurs', JSON.stringify(newUpdatedlist));
+		localStorage.setItem('Achats', JSON.stringify(newUpdatedlist));
 
-		setListFournisseur(newUpdatedlist);
+		setListAchat(newUpdatedlist);
 
-		toast.success('Fournisseur supprimé');
+		toast.success('Achat supprimé');
 	};
 
 	return (
@@ -41,17 +42,17 @@ const AgentAchat: FC = (): ReactElement => {
 					style={{ marginTop: '80px' }}
 				>
 					<div>
-						<h1 className="fw-bold">Fournisseurs : </h1>
+						<h1 className="fw-bold">Achats : </h1>
 					</div>
 					<div>
 						<button type="button" className="primary btn-lg m-0" onClick={handleSubmit}>
-							Ajouter un Fournisseur
+							Ajouter un Achat
 						</button>
 					</div>
 				</div>
 
-				{listFournisseur.length === 0 ? (
-					<span>Fournisseurs vide</span>
+				{listAchat.length === 0 ? (
+					<span>Achats vide</span>
 				) : (
 					<div className="col-12 mt-3">
 						<table className="table">
@@ -60,21 +61,23 @@ const AgentAchat: FC = (): ReactElement => {
 									<th scope="col" className="col-1">
 										ID
 									</th>
-									<th scope="col">Nom de l'entreprise</th>
-									<th scope="col">N° Tel</th>
-									<th scope="col">Ville</th>
-									<th scope="col">Adresse</th>
+									<th scope="col">Designation</th>
+									<th scope="col">Prix unitaire</th>
+									<th scope="col">fournisseur</th>
+									<th scope="col">Date d'achat</th>
+									<th scope="col">Quantité</th>
 									<th scope="col" className="col-1"></th>
 								</tr>
 							</thead>
 							<tbody>
-								{listFournisseur.map((value) => (
+								{listAchat.map((value) => (
 									<tr>
 										<td>{value.id}</td>
-										<td>{value.entreprise}</td>
-										<td>{value.tel}</td>
-										<td>{value.ville}</td>
-										<td>{value.address}</td>
+										<td>{value.designation}</td>
+										<td>{value.price}</td>
+										<td>{value.fournisseur}</td>
+										<td>{value.date}</td>
+										<td>{value.quantity}</td>
 										<td>
 											<button
 												type="button"
